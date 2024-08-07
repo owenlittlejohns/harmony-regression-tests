@@ -75,7 +75,8 @@ jobs:
         env:
           EDL_USER: ${{ secrets.EDL_USER }}
           EDL_PASSWORD: ${{ secrets.EDL_PASSWORD }}
-        run: ./run_notebooks.sh ${{ inputs.docker-image-name }}
+          HARMONY_HOST_URL: ${{ vars.HARMONY_HOST_URL }}
+        run: echo $HARMONY_HOST_URL && ./run_notebooks.sh ${{ inputs.docker-image-name }}
       - name: Save notebook as an artefact
         if: always()
         uses: actions/upload-artifact@v3
