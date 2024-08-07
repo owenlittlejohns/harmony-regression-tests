@@ -70,13 +70,11 @@ jobs:
 
       - name: Pull Docker image 
         run: docker pull ghcr.io/nasa/regression-tests-${{ inputs.docker-image-name }}:${{ inputs.docker-image-tag }}
-      - name: Set environment variables
-        run: |
-          export EDL_USER=${{ secrets.EDL_USER }}
-          export EDL_PASSWORD=${{ secrets.EDL_PASSWORD }}
-          export HARMONY_HOST_URL=${{ env.HARMONY_HOST_URL }}
       - name: Execute notebook
         working-directory: ./test
+        env:
+          EDL_USER: ${{ secrets.EDL_USER }}
+          EDL_PASSWORD: ${{ secrets.EDL_PASSWORD }}
         run: ./run_notebooks.sh ${{ inputs.docker-image-name }}
       - name: Save notebook as an artefact
         if: always()
