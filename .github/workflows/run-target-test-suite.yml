@@ -14,6 +14,8 @@
 # Variables in each environment:
 # - HARMONY_HOST_URL
 #
+# Note: A workflow_call event can only have inputs of type boolean, number or
+# string.
 name: Run test suite
 
 on:
@@ -21,30 +23,14 @@ on:
     inputs:
       docker-image-name:
         required: true
-        type: choice
-        options:
-          - geoloco
-          - harmony-regression
-          - harmony
-          - hga
-          - hoss
-          - hybig
-          # - n2z  # Commented out because needs AWS credentials
-          - regridder
-          - swath-projector
-          - trajectory-subsetter
-          - variable-subsetter
+        type: string
       docker-image-tag:
         required: false
         type: string
         default: 'latest'
       harmony-environment:
         required: true
-        type: choice
-        options:
-          - sit
-          - uat
-          - production
+        type: string
   workflow_dispatch:
     inputs:
       docker-image-name:
