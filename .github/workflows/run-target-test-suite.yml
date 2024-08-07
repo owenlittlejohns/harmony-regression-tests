@@ -69,7 +69,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Pull Docker image 
-        run: docker pull ghcr.io/nasa/${{ inputs.docker-image-name }}:${{ inputs.docker-image-tag }}
+        run: docker pull ghcr.io/nasa/regression-tests-${{ inputs.docker-image-name }}:${{ inputs.docker-image-tag }}
       - name: Set environment variables
         run: |
           export EDL_USER=${{ secrets.EDL_USER }}
