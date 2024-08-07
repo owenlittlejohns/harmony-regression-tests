@@ -45,6 +45,7 @@ on:
           - sit
           - uat
           - production
+
   workflow_dispatch:
     inputs:
       docker-image-name:
