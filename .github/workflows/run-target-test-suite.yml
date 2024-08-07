@@ -46,6 +46,35 @@ on:
           - uat
           - production
 
+  workflow_dispatch:
+    inputs:
+      docker-image-name:
+        required: true
+        type: choice
+        options:
+          - geoloco
+          - harmony-regression
+          - harmony
+          - hga
+          - hoss
+          - hybig
+          # - n2z  # Commented out because needs AWS credentials
+          - regridder
+          - swath-projector
+          - trajectory-subsetter
+          - variable-subsetter
+      docker-image-tag:
+        required: false
+        type: string
+        default: 'latest'
+      harmony-environment:
+        required: true
+        type: choice
+        options:
+          - sit
+          - uat
+          - production
+
 jobs:
   run-tests:
     environment: ${{ inputs.harmony-environment }}
