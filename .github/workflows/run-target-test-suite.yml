@@ -76,8 +76,8 @@ jobs:
           export EDL_PASSWORD=${{ secrets.EDL_PASSWORD }}
           export HARMONY_HOST_URL=${{ env.HARMONY_HOST_URL }}
       - name: Execute notebook
-        working-directory: test
-        run: ./run-notebooks.sh ${{ inputs.docker-image-name }}
+        run: |
+          cd ./test/ && ./run-notebooks.sh ${{ inputs.docker-image-name }}
       - name: Save notebook as an artefact
         if: always()
         uses: actions/upload-artifact@v3
